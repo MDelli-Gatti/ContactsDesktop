@@ -26,9 +26,23 @@ public class Controller implements Initializable{
 
     ObservableList<Contact> contacts = FXCollections.observableArrayList();
 
-    public void onAdd(){
+
+    public void onAdd() throws Exception {
         Contact c = new Contact(name.getText(), phone.getText(), email.getText());
+        if (c.name.equals("")) {
+            throw new Exception("no name");
+        }
+        if (c.phone.equals("")) {
+            throw new Exception("no phone number");
+        }
+        if (c.email.equals("")) {
+            throw new Exception("no email");
+        }
         contacts.add(c);
+        name.setText("Enter Name");
+        phone.setText("Enter Phone Number");
+        email.setText("Enter Email");
+
     }
 
     public void onRemove() {
@@ -40,5 +54,8 @@ public class Controller implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         list.setItems(contacts);
+        name.setText("Enter Name");
+        phone.setText("Enter Phone Number");
+        email.setText("Enter Email");
     }
 }
