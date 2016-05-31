@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class Controller implements Initializable{
     @FXML
     TextField name;
@@ -24,7 +25,7 @@ public class Controller implements Initializable{
     @FXML
     ListView list;
 
-    ObservableList<Contact> contacts = FXCollections.observableArrayList();
+    static ObservableList<Contact> contacts = FXCollections.observableArrayList();
 
 
     public void onAdd() throws Exception {
@@ -32,13 +33,15 @@ public class Controller implements Initializable{
         if (c.name.equals("")) {
             throw new Exception("no name");
         }
-        if (c.phone.equals("")) {
+        else if (c.phone.equals("")) {
             throw new Exception("no phone number");
         }
-        if (c.email.equals("")) {
+        else if (c.email.equals("")) {
             throw new Exception("no email");
         }
-        contacts.add(c);
+        else{
+            contacts.add(c);
+        }
         name.setText("Enter Name");
         phone.setText("Enter Phone Number");
         email.setText("Enter Email");
@@ -57,5 +60,6 @@ public class Controller implements Initializable{
         name.setText("Enter Name");
         phone.setText("Enter Phone Number");
         email.setText("Enter Email");
+
     }
 }
